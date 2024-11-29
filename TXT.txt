@@ -1,0 +1,49 @@
+DAL
+	ClsListadosDAL
+	-List<clsPersona> listaPersonas;
+	+ static List<clsPersona> obtenerListadoPersonasDAL(){}
+BL
+	ClsListadosBL
+	+ static List<clsPersona> obtenerListadoPersonasBL(){}
+
+ENT
+	clsPersona
+	- int id
+	- String nombre
+
+	+ int Id {get,set}
+	+ String nombre{get,set}
+
+	+clsPersona(){}
+	+clsPersona(id,nombre){}
+UI
+
+	Model
+		clsPersonaConFoto:clsPersona
+			-String Imagen
+			+String Imagen{get,set}
+
+			+ clsPersonaConFoto(clsPersona p){}
+
+			private void selecionarImagen
+	ViewModel
+		PaginaPrincipalVM : INotify
+			- int contadorPartida {get}
+			- int contadorAcertado {get}
+			- int contadorIncorrecto {get}
+			- List<clsPersonaConFoto> listaJuego {get,set}
+			- List<clsPersona> listaPersonas{get,set}
+			- clsPersonaConFoto perosonaJuego{get,set}
+			- String pregunta {get,set}
+			- DelegateCommand reiniciarCommand {get} 
+			- clsPersonaConFoto personaSeleccionada {get,set}
+
+			+PaginaPrincipalVM()
+			{
+				listadoPerosnas = obtenerlistadoPersonasDAL()
+				reiniciarCommand = DelegateCommand()
+			}
+
+
+
+			#region Notify

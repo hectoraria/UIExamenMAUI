@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UIExamenMAUI.Views.MainPage"
+             xmlns:vm="clr-namespace:UIExamenMAUI.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:PaginaPrincipalVM></vm:PaginaPrincipalVM>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            
+            <Label Text="{Binding Pregunta}" FontSize="Large"></Label>
+            <Image Source="{Binding PersonaJuego.Foto}" WidthRequest="150" HeightRequest="150"></Image>
+            <VerticalStackLayout Spacing="10" Margin="12">
+            <ListView ItemsSource="{Binding PersonasJuego}"
+SelectedItem="{Binding PersonaSeleccionado}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="10"
+                          Margin="5"
+                          BorderColor="#E0E0E0"
+                          BackgroundColor="Black"
+                          InputTransparent="False">
+
+
+
+                                <VerticalStackLayout>
+                                        <Label Text="{Binding Nombre}"
+                                TextColor="#ffffff"
+                                FontSize="Medium"
+                                FontAttributes="Bold">
+                                        </Label>
+                                    </VerticalStackLayout>
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                <Label Text="ContadorAcertado"></Label>
+                <Label Text="{Binding ContadorAcertado}"></Label>
+                <Label Text="ContadorIncorrecto"></Label>
+                <Label Text="{Binding ContadorIncorrecto}"></Label>
+                <Label Text="ContadorPreguntas"></Label>
+                <Label Text="{Binding ContadorPreguntas}"></Label>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
